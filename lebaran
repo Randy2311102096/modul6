@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Ramadan Kareem</title>
+
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: gold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: orange;
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            color: #000;
+            margin: 15% auto;
+            padding: 30px;
+            width: 300px;
+            border-radius: 15px;
+            animation: muncul 0.5s;
+        }
+
+        @keyframes muncul {
+            from {transform: scale(0);}
+            to {transform: scale(1);}
+        }
+
+        .close {
+            float: right;
+            font-size: 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🌙 Ramadan Kareem</h1>
+    <p>Semoga Ramadan kamu penuh berkah!</p>
+
+    <button id="btnTHR">🎁 Ambil THR</button>
+    <br>
+    <button id="toggleMusic">🔊 Play / Pause Musik</button>
+</div>
+
+<!-- Audio -->
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Modal -->
+<div id="modalTHR" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>🎉 Selamat!</h2>
+        <p>Anda mendapatkan THR sebesar Rp 1.000.000 💸</p>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    var music = $("#music")[0];
+
+    // Play otomatis (beberapa browser butuh klik dulu)
+    $(document).click(function(){
+        music.play();
+    });
+
+    // Tombol THR
+    $("#btnTHR").click(function(){
+        $("#modalTHR").fadeIn();
+    });
+
+    // Tutup modal
+    $(".close").click(function(){
+        $("#modalTHR").fadeOut();
+    });
+
+    $(window).click(function(e){
+        if(e.target.id == "modalTHR"){
+            $("#modalTHR").fadeOut();
+        }
+    });
+
+    // Toggle musik
+    $("#toggleMusic").click(function(){
+        if(music.paused){
+            music.play();
+        } else {
+            music.pause();
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
