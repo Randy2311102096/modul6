@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Praktikum Modul 6 - Terpadu</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <script>
+        // IMPLEMENTASI JAVASCRIPT DASAR [cite: 18]
+        var namaPraktikan = "Mahasiswa"; // Variabel [cite: 38]
+        var daftarFitur = ["Hide", "Show", "Animate"]; // Array [cite: 52]
+
+        // Function Expression untuk kalkulasi sederhana [cite: 205, 206]
+        var hitungKlik = function(n) {
+            return n + 1;
+        };
+
+        var klik = 0;
+
+        // IMPLEMENTASI JQUERY [cite: 268]
+        $(document).ready(function() {
+            // Logika Gabungan: Menampilkan isi array ke console saat web siap
+            console.log("Fitur tersedia: " + daftarFitur.join(", "));
+
+            // Efek Hide [cite: 317, 318]
+            $("#btnHide").click(function() {
+                $("p.konten").hide();
+                klik = hitungKlik(klik);
+                $("#info").text("Tombol diklik: " + klik + " kali");
+            });
+
+            // Efek Show [cite: 320, 321]
+            $("#btnShow").click(function() {
+                $("p.konten").show();
+                klik = hitungKlik(klik);
+                $("#info").text("Tombol diklik: " + klik + " kali");
+            });
+
+            // Efek Animasi Toggle [cite: 344, 345, 346]
+            $("#btnAnimate").click(function() {
+                $(".kotak").animate({
+                    height: 'toggle',
+                    opacity: '0.5'
+                });
+                klik = hitungKlik(klik);
+                $("#info").text("Tombol diklik: " + klik + " kali");
+            });
+        });
+    </script>
+
+    <style>
+        .kotak {
+            background: #98bf21; 
+            height: 100px; 
+            width: 100px; 
+            position: relative; /* Penting untuk animasi posisi [cite: 357, 358] */
+            margin-top: 10px;
+        }
+        #info { font-weight: bold; color: blue; }
+    </style>
+</head>
+<body>
+
+    <h1>Selamat Datang, <script>document.write(namaPraktikan);</script>!</h1>
+    
+    <p class="konten">Ini adalah paragraf yang bisa disembunyikan atau dimunculkan[cite: 327].</p>
+    
+    <button id="btnHide">Sembunyikan Paragraf</button>
+    <button id="btnShow">Tampilkan Paragraf</button>
+    <button id="btnAnimate">Toggle Animasi Kotak</button>
+
+    <p id="info">Tombol diklik: 0 kali</p>
+
+    <div class="kotak"></div>
+
+</body>
+</html>
